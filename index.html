@@ -96,17 +96,28 @@
 
   .h-label{font-family:'Syne',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;opacity:0;animation:fadeUp .8s var(--ease) .3s forwards}
 
-  .mono-wrap{position:relative;width:95px;height:95px;display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem;opacity:0;animation:fadeUp .8s var(--ease) .5s forwards}
+  /* Monogram Adjusted to fit precisely inside circular text bounds */
+  .mono-wrap{position:relative;width:110px;height:110px;display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem;opacity:0;animation:fadeUp .8s var(--ease) .5s forwards}
   .mono-ring{position:absolute;inset:0;animation:spin 30s linear infinite}
-  .mono-glyph{font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--gold);line-height:1;animation:glow 4s ease-in-out 3s infinite}
+  .mono-glyph{
+    font-family:'Bodoni Moda',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:1.45rem;
+    letter-spacing:-0.01em;
+    color:var(--gold);
+    line-height:1;
+    transform:translateY(-1px);
+    animation:glow 4s ease-in-out 3s infinite;
+  }
 
   .bismillah{font-family:'Amiri',serif;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--gold);direction:rtl;line-height:1.7;margin-bottom:1.2rem;opacity:0;animation:fadeUp .8s var(--ease) .8s forwards}
 
-  /* ── Scaled Down Typographic Scale ── */
+  /* ── Scaled Down Names ── */
   .dn-container {display:flex;flex-direction:column;align-items:center;margin:1rem 0}
   .dn {
     font-family:'Bodoni Moda',serif;
-    font-size:clamp(3.2rem, 11vw, 6.5rem); /* Managed scaling limits */
+    font-size:clamp(3.2rem, 11vw, 6.5rem);
     font-weight:200;font-style:italic;
     font-variation-settings:'opsz' 72;
     letter-spacing:.01em;color:var(--ink);display:block;line-height:.9;
@@ -154,13 +165,11 @@
   .events{padding:80px 0;max-width:860px;margin:0 auto;position:relative;z-index:2}
   .ev-eye{font-family:'Syne',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);text-align:center;display:block;margin-bottom:3rem;padding:0 24px}
 
-  /* Big date managed scale */
   .ev-date{text-align:center;margin-bottom:4rem;padding:0 24px}
   .ev-day{font-family:'Bodoni Moda',serif;font-weight:200;font-style:italic;font-size:clamp(5.5rem,18vw,10rem);line-height:.8;letter-spacing:-.02em;color:var(--ink);font-variation-settings:'opsz' 144}
   .ev-mo{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,4vw,2.2rem);letter-spacing:.18em;color:var(--gold);display:block;margin-top:.5rem}
   .ev-wd{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin-top:.4rem}
 
-  /* Event item */
   .ev{padding:2.5rem 24px 3rem;position:relative;overflow:hidden}
   .ev:first-of-type .ev-hr{display:none}
   .ev-hr{height:1px;background:var(--glt);margin:0 24px 2.5rem;transform-origin:left;animation:lineGrow .8s var(--ease) both}
