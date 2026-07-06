@@ -111,7 +111,7 @@
     animation:glow 4s ease-in-out 3s infinite;
   }
 
-  /* ── Scaled Down Names ── */
+  /* ── Names ── */
   .dn-container {display:flex;flex-direction:column;align-items:center;margin:1rem 0}
   .dn {
     font-family:'Bodoni Moda',serif;
@@ -120,7 +120,6 @@
     font-variation-settings:'opsz' 72;
     letter-spacing:.01em;color:var(--ink);display:block;line-height:.9;
   }
-  /* Legible script swap for the Bride's name */
   .dn-bride {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -315,7 +314,7 @@
 <!-- ════ VERSE 1 ════ -->
 <div class="verse">
   <div class="vw">
-    <p class="ar rv">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّن| أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+    <p class="ar rv">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
     <span class="vref rv">Al-Quran · Surah Ar-Rum · 30:21</span>
     <p class="ven wr rv">And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.</p>
   </div>
@@ -343,7 +342,7 @@
       <p class="ev-meta">Thursday · 6th August 2026</p>
       <p class="ev-time">11 : 30 AM</p>
       <div class="ev-actions">
-        <a class="lbtn" href="https://www.google.com/maps/search/?api=1&query=New+Masjid+Lalpet" target="_blank" rel="noopener">
+        <a class="lbtn" href="https://www.google.com/maps/search/?api=1&query=New+Masjid+Lalpet+8H23%2BPWR" target="_blank" rel="noopener">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Get Directions
         </a>
@@ -371,10 +370,6 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Get Directions
         </a>
-        <button class="lbtn" onclick="openCal('walima')">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Add to Calendar
-        </button>
       </div>
     </div>
   </div>
@@ -540,8 +535,7 @@ document.querySelectorAll('.wr').forEach(el=>wrObs.observe(el));
 
 /* ── Calendar ── */
 const EVTS={
-  nikah:{title:'Rashid & Alia — Nikah Ceremony',sub:'Nikah · New Masjid, Lalpet',loc:'New Masjid, Lalpet',start:'20260806T060000Z',end:'20260806T080000Z',desc:'Nikah Ceremony at New Masjid, Lalpet. Followed by Walima Lunch at Noor Mahal, Lalpet.'},
-  walima:{title:'Rashid & Alia — Walima Lunch',sub:'Walima · Noor Mahal, Lalpet',loc:'Noor Mahal, Lalpet',start:'20260806T073000Z',end:'20260806T103000Z',desc:'Walima Lunch at Noor Mahal, Lalpet.'}
+  nikah:{title:'Rashid & Alia — Nikah Ceremony',sub:'Nikah · New Masjid, Lalpet',loc:'New Masjid, Lalpet (8H23+PWR)',start:'20260806T060000Z',end:'20260806T080000Z',desc:'Nikah Ceremony at New Masjid, Lalpet. Followed by Walima Lunch at Noor Mahal, Lalpet.'}
 };
 let activeEvt=null;
 
