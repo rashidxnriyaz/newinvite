@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rashid & Alia · 06.08.2026</title>
+
+  <!--
+    FONT DIRECTION:
+    Bodoni Moda (optical variable) — display names & venues. At weight 200 + italic the
+    hairline-to-bold contrast is extraordinary. Think Vogue, Loewe, Bottega Veneta.
+    Bebas Neue           — condensed editorial labels / section markers.
+    Syne                 — refined small-caps UI labels.
+    Amiri                — Quranic Arabic.
+    Great Vibes          — script ampersand.
+    Lora                 — body / verse translations.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,200;0,6..96,300;0,6..96,400;1,6..96,200;1,6..96,300;1,6..96,400&family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+
+  <style>
+  /* ── Reset ── */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  /* ── Tokens ── */
+  :root{
+    --iv:   #FAF8F1;
+    --iv2:  #F4EACB;
+    --iv3:  #EEE0B8;
+    --gold: #C49A3C;
+    --glt:  #DDB96A;
+    --gpale:#F0E4C0;
+    --gdk:  #7A5A18;
+    --ink:  #1A1108;
+    --warm: #5C4A2A;
+    --ease: cubic-bezier(.16,1,.3,1);
+  }
+
+  html{scroll-behavior:smooth}
+  body{background:var(--iv);color:var(--ink);font-family:'Lora',serif;overflow-x:hidden}
+
+  /* ── Progress ── */
+  #prog{position:fixed;top:0;left:0;height:2px;width:0;
+    background:linear-gradient(90deg,var(--gdk),var(--gold),var(--glt));z-index:9990;transition:width .1s linear}
+
+  /* ── Cursor ── */
+  @media(pointer:fine){
+    body{cursor:none}
+    #cur{
+      position:fixed;width:8px;height:8px;border-radius:50%;
+      background:var(--gold);pointer-events:none;z-index:9999;
+      top:0;left:0;transform:translate(-50%,-50%);
+      transition:width .2s var(--ease),height .2s var(--ease),background .2s;
+      mix-blend-mode:multiply;
+    }
+    body.hl #cur{width:28px;height:28px;background:var(--glt)}
+  }
+
+  /* ── Keyframes ── */
+  @keyframes fadeUp {from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes ltrUp  {from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes ticker {from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes bob    {0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+  @keyframes spin   {to{transform:rotate(360deg)}}
+  @keyframes pulse  {0%,100%{opacity:1}50%{opacity:.35}}
+  @keyframes glow   {
+    0%  {text-shadow:0 0 0 rgba(196,154,60,0)}
+    50% {text-shadow:0 0 24px rgba(196,154,60,.28)}
+    100%{text-shadow:0 0 0 rgba(196,154,60,0)}
+  }
+  @keyframes lineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+  /* ── Reveal ── */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .rv-l{opacity:0;transform:translateX(-32px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+  .rv-r{opacity:0;transform:translateX(32px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+  .rv.on,.rv-l.on,.rv-r.on{opacity:1;transform:none}
+
+  .wr-word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em}
+  .wr-word span{display:inline-block;transform:translateY(110%);transition:transform .75s var(--ease)}
+  .wr-on .wr-word span{transform:translateY(0)}
+
+  @media(prefers-reduced-motion:reduce){
+    .rv,.rv-l,.rv-r{opacity:1;transform:none;transition:none}
+    .wr-word span{transform:none}
+  }
+
+  /* ════════════════════ HERO ════════════════════ */
+  .hero{
+    min-height:100svh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:72px 28px 60px;text-align:center;
+    position:relative;overflow:hidden;background:var(--iv);
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:
+      repeating-linear-gradient(0deg,  transparent,transparent 59px,rgba(196,154,60,.05) 59px,rgba(196,154,60,.05) 60px),
+      repeating-linear-gradient(90deg, transparent,transparent 59px,rgba(196,154,60,.05) 59px,rgba(196,154,60,.05) 60px);
+    pointer-events:none;
+  }
+  .hero>*{position:relative;z-index:2}
+  #ptcl{position:absolute;inset:0;z-index:1;pointer-events:none}
+
+  .h-label{font-family:'Syne',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;opacity:0;animation:fadeUp .8s var(--ease) .3s forwards}
+
+  .mono-wrap{position:relative;width:110px;height:110px;display:flex;align-items:center;justify-content:center;margin-bottom:1.6rem;opacity:0;animation:fadeUp .8s var(--ease) .5s forwards}
+  .mono-ring{position:absolute;inset:0;animation:spin 30s linear infinite}
+  .mono-glyph{font-family:'Great Vibes',cursive;font-size:2.6rem;color:var(--gold);line-height:1;animation:glow 4s ease-in-out 3s infinite}
+
+  .bismillah{font-family:'Amiri',serif;font-size:clamp(1.6rem,5vw,2.6rem);color:var(--gold);direction:rtl;line-height:1.7;margin-bottom:1.6rem;opacity:0;animation:fadeUp .8s var(--ease) .8s forwards}
+
+  /* ── Names in Bodoni Moda italic weight 200 ── */
+  .dn{
+    font-family:'Bodoni Moda',serif;font-size:clamp(5rem,20vw,12rem);
+    font-weight:200;font-style:italic;
+    font-variation-settings:'opsz' 72;
+    letter-spacing:.01em;color:var(--ink);display:block;line-height:.86;
+  }
+  .dn .ltr{display:inline-block;opacity:0;transform:translateY(40px);animation:ltrUp .55s var(--ease) forwards}
+  .amp{font-family:'Great Vibes',cursive;font-size:clamp(3rem,10vw,6rem);color:var(--gold);display:block;line-height:1.3;margin:.1em 0;opacity:0;animation:fadeUp .8s var(--ease) 2s forwards}
+
+  .h-date{margin-top:1.8rem;font-family:'Syne',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--warm);display:flex;align-items:center;gap:14px;justify-content:center;opacity:0;animation:fadeUp .8s var(--ease) 2.4s forwards}
+  .h-date::before,.h-date::after{content:'';width:32px;height:1px;background:var(--glt)}
+
+  .h-scroll{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0;animation:fadeUp .8s var(--ease) 2.8s forwards}
+  .h-scroll span{font-family:'Syne',sans-serif;font-size:.54rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--glt)}
+  .h-scroll svg{animation:bob 2s ease-in-out infinite}
+
+  /* ════════════════════ COUNTDOWN ════════════════════ */
+  .cdown{padding:60px 28px;text-align:center;background:var(--iv);border-top:1px solid rgba(196,154,60,.15);border-bottom:1px solid rgba(196,154,60,.15)}
+  .cdown-lbl{font-family:'Syne',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:2rem}
+  .cdown-grid{display:flex;justify-content:center;align-items:flex-start;gap:clamp(.8rem,3.5vw,2.5rem);flex-wrap:wrap}
+  .cu{text-align:center}
+  .cn{font-family:'Bodoni Moda',serif;font-size:clamp(3rem,10vw,5.5rem);font-weight:200;font-style:italic;color:var(--ink);line-height:1;display:block;font-variation-settings:'opsz' 72}
+  .cu-lbl{font-family:'Syne',sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin-top:.3rem;display:block}
+  .csep{font-family:'Bodoni Moda',serif;font-size:clamp(2rem,7vw,4rem);font-weight:200;font-style:italic;color:var(--glt);line-height:1;padding-top:.05em;animation:pulse 1s ease-in-out infinite;font-variation-settings:'opsz' 72}
+
+  /* ════════════════════ TICKER ════════════════════ */
+  .ticker{overflow:hidden;padding:13px 0;background:var(--iv);border-top:1px solid rgba(196,154,60,.18);border-bottom:1px solid rgba(196,154,60,.18)}
+  .ticker-track{display:flex;width:max-content;animation:ticker 32s linear infinite}
+  .ticker-track:hover{animation-play-state:paused}
+  .ticker-item{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);white-space:nowrap;padding:0 2rem}
+  .tgem{display:inline-block;width:5px;height:5px;background:var(--gold);transform:rotate(45deg);margin:0 .7rem;vertical-align:middle}
+
+  /* ════════════════════ VERSE ════════════════════ */
+  .verse{
+    padding:88px 28px;text-align:center;
+    background:var(--iv2);
+    clip-path:polygon(0 5%,100% 0,100% 95%,0 100%);
+    margin:-3% 0;
+    position:relative;z-index:1;
+  }
+  .vw{max-width:640px;margin:0 auto}
+  .ar{font-family:'Amiri',serif;direction:rtl;line-height:2.3;font-size:clamp(1.3rem,4vw,2rem);color:var(--gdk);margin-bottom:1.4rem}
+  .vref{display:block;font-family:'Syne',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+  .ven{font-family:'Lora',serif;font-style:italic;font-size:clamp(1.05rem,2.8vw,1.3rem);line-height:1.85;max-width:520px;margin:0 auto;color:var(--warm)}
+
+  /* ════════════════════ EVENTS — editorial, no boxes ════════════════════ */
+  .events{padding:100px 0;max-width:860px;margin:0 auto;position:relative;z-index:2}
+
+  .ev-eye{font-family:'Syne',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);text-align:center;display:block;margin-bottom:4rem;padding:0 28px}
+
+  /* Big date */
+  .ev-date{text-align:center;margin-bottom:5rem;padding:0 28px}
+  .ev-day{font-family:'Bodoni Moda',serif;font-weight:200;font-style:italic;font-size:clamp(8rem,28vw,16rem);line-height:.8;letter-spacing:-.04em;color:var(--ink);font-variation-settings:'opsz' 144}
+  .ev-mo{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,5vw,2.8rem);letter-spacing:.18em;color:var(--gold);display:block;margin-top:.6rem}
+  .ev-wd{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin-top:.4rem}
+
+  /* Event item */
+  .ev{padding:3rem 28px 3.5rem;position:relative;overflow:hidden}
+  .ev:first-of-type .ev-hr{display:none}
+
+  /* Top horizontal rule */
+  .ev-hr{height:1px;background:var(--glt);margin:0 28px 3rem;transform-origin:left;animation:lineGrow .8s var(--ease) both}
+
+  .ev-num{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(8rem,22vw,14rem);
+    color:rgba(196,154,60,.06);
+    position:absolute;right:24px;top:50%;transform:translateY(-50%);
+    line-height:1;pointer-events:none;user-select:none;
+    transition:color .4s ease;
+  }
+  .ev:hover .ev-num{color:rgba(196,154,60,.1)}
+
+  .ev-type{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,5vw,2.8rem);letter-spacing:.12em;color:var(--gold);display:block;margin-bottom:.6rem}
+
+  .ev-venue{
+    font-family:'Bodoni Moda',serif;font-weight:200;font-style:italic;
+    font-size:clamp(2.8rem,9vw,6rem);color:var(--ink);line-height:1;
+    font-variation-settings:'opsz' 72;
+    margin-bottom:.5rem;
+  }
+  .ev-loc{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin-bottom:1.4rem}
+  .ev-meta{font-family:'Lora',serif;font-style:italic;font-size:clamp(.9rem,2vw,1.05rem);color:var(--warm);margin-bottom:.5rem}
+  .ev-time{
+    font-family:'Bodoni Moda',serif;font-weight:300;font-style:italic;
+    font-size:clamp(1.8rem,5vw,3rem);color:var(--gold);line-height:1;
+    font-variation-settings:'opsz' 48;
+    margin-bottom:2rem;
+  }
+
+  /* Link-style buttons */
+  .ev-actions{display:flex;gap:2rem;flex-wrap:wrap;align-items:center}
+  .lbtn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;cursor:pointer;
+    background:none;border:none;padding:0;
+    position:relative;
+  }
+  .lbtn::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+  .lbtn:hover{color:var(--gold)}
+  .lbtn:hover::after{transform:scaleX(1)}
+  .lbtn svg{transition:transform .3s var(--ease)}
+  .lbtn:hover svg{transform:translate(3px,-3px)}
+
+  /* ════════════════════ FOOTER ════════════════════ */
+  .footer{padding:88px 28px 68px;text-align:center;background:var(--iv);border-top:1px solid rgba(196,154,60,.15);position:relative;z-index:2}
+  .f-star{display:block;margin:0 auto 2rem;opacity:.55}
+  .dua-ar{font-family:'Amiri',serif;font-size:clamp(1.2rem,3.5vw,1.75rem);direction:rtl;color:var(--gdk);line-height:2;margin-bottom:.8rem}
+  .dua-en{font-family:'Lora',serif;font-style:italic;font-size:clamp(.9rem,2vw,1.05rem);color:var(--warm);max-width:420px;margin:0 auto}
+  .fdiv{display:flex;align-items:center;justify-content:center;gap:12px;margin:2.5rem auto;max-width:260px}
+  .fdiv::before,.fdiv::after{content:'';flex:1;height:1px}
+  .fdiv::before{background:linear-gradient(to right,transparent,var(--glt))}
+  .fdiv::after{background:linear-gradient(to left,transparent,var(--glt))}
+  .fdg{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+  .families{font-family:'Lora',serif;font-style:italic;font-size:clamp(1rem,2.8vw,1.25rem);color:var(--warm);line-height:1.9}
+  .families strong{font-style:normal;font-weight:500;color:var(--ink)}
+  .f-mark{margin-top:3rem;font-family:'Syne',sans-serif;font-size:.54rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(196,154,60,.38)}
+
+  /* ════════════════════ MODAL ════════════════════ */
+  .mbg{position:fixed;inset:0;background:rgba(26,17,8,.45);z-index:9000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .35s ease;backdrop-filter:blur(8px)}
+  .mbg.open{opacity:1;pointer-events:all}
+  .modal{background:var(--iv);max-width:380px;width:100%;padding:2.5rem 2rem;position:relative;transform:translateY(20px) scale(.96);transition:transform .4s var(--ease)}
+  .mbg.open .modal{transform:none}
+  .modal-close{position:absolute;top:.9rem;right:1rem;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--warm);padding:.2rem .5rem;transition:color .2s}
+  .modal-close:hover{color:var(--gold)}
+  .modal-ttl{font-family:'Bodoni Moda',serif;font-size:1.7rem;font-weight:200;font-style:italic;color:var(--ink);margin-bottom:.3rem;font-variation-settings:'opsz' 24}
+  .modal-sub{font-family:'Syne',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1.8rem}
+  .cal-btn{display:flex;align-items:center;gap:.75rem;width:100%;padding:.9rem 1.1rem;margin-bottom:.7rem;border:1px solid var(--gpale);background:var(--gpale);cursor:pointer;text-decoration:none;color:var(--ink);font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;transition:background .2s,border-color .2s,color .2s}
+  .cal-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--iv)}
+  .cal-btn svg{flex-shrink:0}
+
+  /* ── Responsive ── */
+  @media(max-width:480px){
+    .hero{padding:56px 20px 48px}
+    .ev{padding:2.5rem 20px 3rem}
+    .ev-hr{margin:0 20px 2.5rem}
+    .ev-actions{gap:1.4rem}
+  }
+  </style>
+</head>
+<body>
+
+<div id="prog"></div>
+<div id="cur"></div>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <canvas id="ptcl"></canvas>
+
+  <p class="h-label">You are cordially invited</p>
+
+  <div class="mono-wrap">
+    <svg class="mono-ring" viewBox="0 0 200 200" fill="none">
+      <defs><path id="cp" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs>
+      <text font-size="10" fill="#C49A3C" letter-spacing="3.2" font-family="Syne,sans-serif" font-weight="700" opacity="0.65">
+        <textPath href="#cp">RASHID &amp; ALIA · 6 AUGUST 2026 · NIKAH · WALIMA · LALPET · &nbsp;&nbsp;</textPath>
+      </text>
+    </svg>
+    <span class="mono-glyph">R&amp;A</span>
+  </div>
+
+  <p class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+
+  <div>
+    <span class="dn" id="n1">Rashid</span>
+    <span class="amp">&amp;</span>
+    <span class="dn" id="n2">Alia</span>
+  </div>
+
+  <p class="h-date">6th August 2026</p>
+
+  <div class="h-scroll">
+    <span>Scroll</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+
+<!-- ════ COUNTDOWN ════ -->
+<div class="cdown rv">
+  <span class="cdown-lbl">Counting down to the big day</span>
+  <div class="cdown-grid">
+    <div class="cu"><span class="cn" id="cd-d">--</span><span class="cu-lbl">Days</span></div>
+    <span class="csep">·</span>
+    <div class="cu"><span class="cn" id="cd-h">--</span><span class="cu-lbl">Hours</span></div>
+    <span class="csep">·</span>
+    <div class="cu"><span class="cn" id="cd-m">--</span><span class="cu-lbl">Mins</span></div>
+    <span class="csep">·</span>
+    <div class="cu"><span class="cn" id="cd-s">--</span><span class="cu-lbl">Secs</span></div>
+  </div>
+</div>
+
+
+<!-- ════ TICKER ════ -->
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="tk"></div></div>
+
+
+<!-- ════ VERSE 1 ════ -->
+<div class="verse">
+  <div class="vw">
+    <p class="ar rv">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+    <span class="vref rv">Al-Quran · Surah Ar-Rum · 30:21</span>
+    <p class="ven wr rv">And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.</p>
+  </div>
+</div>
+
+
+<!-- ════ EVENTS ════ -->
+<section class="events" id="events">
+
+  <span class="ev-eye rv">The Celebration</span>
+
+  <div class="ev-date rv">
+    <div class="ev-day">06</div>
+    <span class="ev-mo">August · 2026</span>
+    <div class="ev-wd">Thursday</div>
+  </div>
+
+  <!-- Nikah -->
+  <div class="ev" id="ev-nikah">
+    <span class="ev-num">01</span>
+    <div class="rv-l">
+      <span class="ev-type">Nikah Ceremony</span>
+      <h2 class="ev-venue">New Masjid</h2>
+      <p class="ev-loc">Lalpet</p>
+      <p class="ev-meta">Thursday · 6th August 2026</p>
+      <p class="ev-time">11 : 30 AM</p>
+      <div class="ev-actions">
+        <a class="lbtn" href="https://www.google.com/maps/search/?api=1&query=New+Masjid+Lalpet" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Get Directions
+        </a>
+        <button class="lbtn" onclick="openCal('nikah')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Add to Calendar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="ev-hr"></div>
+
+  <!-- Walima -->
+  <div class="ev" id="ev-walima">
+    <span class="ev-num">02</span>
+    <div class="rv-r">
+      <span class="ev-type">Walima Lunch</span>
+      <h2 class="ev-venue">Noor Mahal</h2>
+      <p class="ev-loc">Lalpet</p>
+      <p class="ev-meta">Following the Nikah</p>
+      <div class="ev-actions" style="margin-top:2rem">
+        <a class="lbtn" href="https://www.google.com/maps/search/?api=1&query=Noor+Mahal+Lalpet" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Get Directions
+        </a>
+        <button class="lbtn" onclick="openCal('walima')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Add to Calendar
+        </button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ════ VERSE 2 ════ -->
+<div class="verse" style="margin-top:-3%;position:relative;z-index:1;">
+  <div class="vw">
+    <p class="ar rv">رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا</p>
+    <span class="vref rv">Al-Quran · Surah Al-Furqan · 25:74</span>
+    <p class="ven wr rv">Our Lord, grant us from among our wives and offspring comfort to our eyes and make us an example for the righteous.</p>
+  </div>
+</div>
+
+
+<!-- ════ FOOTER ════ -->
+<footer class="footer">
+  <svg class="f-star" width="44" height="44" viewBox="0 0 100 100" fill="none">
+    <path d="M50 12L56 34L78 28L64 46L82 62L60 56L50 78L40 56L18 62L36 46L22 28L44 34Z" stroke="#C49A3C" stroke-width="1.6" fill="none"/>
+    <circle cx="50" cy="50" r="8" stroke="#C49A3C" stroke-width="1.2" fill="none"/>
+  </svg>
+  <div class="rv">
+    <p class="dua-ar">بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+    <p class="dua-en">"May Allah bless you both, bestow His blessings upon you, and unite you in goodness."</p>
+  </div>
+  <div class="fdiv rv"><div class="fdg"></div></div>
+  <p class="families rv">With love and prayers,<br/><strong>From the families of the Bride &amp; Groom</strong></p>
+  <p class="f-mark rv">Rashid &amp; Alia · 06 . 08 . 2026</p>
+</footer>
+
+
+<!-- ════ CALENDAR MODAL ════ -->
+<div class="mbg" id="calModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeCal()">×</button>
+    <h3 class="modal-ttl">Add to Calendar</h3>
+    <span class="modal-sub" id="cal-sub"></span>
+    <a class="cal-btn" id="cal-google" href="#" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Add to Google Calendar
+    </a>
+    <button class="cal-btn" onclick="dlICS()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download .ics (Apple · Outlook)
+    </button>
+  </div>
+</div>
+
+
+<script>
+/* ── Cursor ── */
+const cur=document.getElementById('cur');
+if(cur&&window.matchMedia('(pointer:fine)').matches){
+  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+  document.querySelectorAll('.lbtn,.cal-btn,.modal-close,.mono-wrap').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
+  });
+}
+
+/* ── Progress ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('prog').style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
+},{ passive:true });
+
+/* ── Parallax on hero ── */
+window.addEventListener('scroll',()=>{
+  const y=scrollY;
+  const bi=document.querySelector('.bismillah');
+  const nb=document.querySelector('.dn');
+  if(bi) bi.style.transform=`translateY(${y*.2}px)`;
+  if(nb) nb.closest('div').style.transform=`translateY(${y*.1}px)`;
+},{passive:true});
+
+/* ── Gold particles ── */
+(function(){
+  const c=document.getElementById('ptcl');if(!c)return;
+  const x=c.getContext('2d');
+  function rsz(){c.width=c.offsetWidth;c.height=c.offsetHeight}
+  rsz();window.addEventListener('resize',rsz);
+  const pts=Array.from({length:50},()=>mk(c));
+  function mk(c){return{x:Math.random()*c.width,y:c.height+Math.random()*c.height,r:Math.random()*1.7+.4,vy:-(Math.random()*.55+.2),vx:(Math.random()-.5)*.22,a:Math.random()*.45+.08,life:Math.random()}}
+  function draw(){
+    x.clearRect(0,0,c.width,c.height);
+    pts.forEach(p=>{
+      p.y+=p.vy;p.x+=p.vx;p.life-=.0012;
+      if(p.y<-10||p.life<=0)Object.assign(p,mk(c),{y:c.height+10,life:1});
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);
+      x.fillStyle=`rgba(196,154,60,${p.a*p.life})`;x.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Letter split ── */
+function splitName(id,base){
+  const el=document.getElementById(id);if(!el)return;
+  el.innerHTML=[...el.textContent].map((ch,i)=>
+    `<span class="ltr" style="animation-delay:${(base+i*.08).toFixed(2)}s">${ch==' '?'&nbsp;':ch}</span>`).join('');
+}
+splitName('n1',1.2);splitName('n2',2.0);
+
+/* ── Ticker ── */
+const words=['Nikah Ceremony','New Masjid · Lalpet','11:30 AM','Walima Lunch','Noor Mahal','Lalpet','6 August 2026'];
+const gem='<span class="tgem"></span>';
+document.getElementById('tk').innerHTML=words.map(w=>`<span class="ticker-item">${w}${gem}</span>`).join('').repeat(4);
+
+/* ── Countdown ── */
+function pad(n){return String(n).padStart(2,'0')}
+function tick(){
+  const d=new Date('2026-08-06T11:30:00+05:30')-new Date();
+  if(d<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return}
+  document.getElementById('cd-d').textContent=pad(Math.floor(d/864e5));
+  document.getElementById('cd-h').textContent=pad(Math.floor(d%864e5/36e5));
+  document.getElementById('cd-m').textContent=pad(Math.floor(d%36e5/6e4));
+  document.getElementById('cd-s').textContent=pad(Math.floor(d%6e4/1e3));
+}
+tick();setInterval(tick,1000);
+
+/* ── Word reveal ── */
+document.querySelectorAll('.wr').forEach(el=>{
+  const words=el.textContent.trim().split(' ');
+  el.innerHTML=words.map((w,i)=>`<span class="wr-word" style="transition-delay:${(i*.05).toFixed(2)}s"><span>${w}</span></span>`).join(' ');
+});
+
+/* ── Magnetic buttons (desktop) ── */
+if(window.matchMedia('(pointer:fine)').matches){
+  document.querySelectorAll('.lbtn').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const x=(e.clientX-r.left-r.width/2)*.2;
+      const y=(e.clientY-r.top-r.height/2)*.2;
+      btn.style.transform=`translate(${x}px,${y}px)`;
+    });
+    btn.addEventListener('mouseleave',()=>btn.style.transform='');
+  });
+}
+
+/* ── Scroll reveal observer ── */
+const easing='.16, 1, .3, 1';
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>{
+        e.target.classList.add('on');
+        if(e.target.classList.contains('wr')) e.target.classList.add('wr-on');
+        if(e.target.classList.contains('rv')&&e.target.classList.contains('wr')) e.target.classList.add('wr-on');
+      },i*80);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>obs.observe(el));
+
+// Also observe word-reveal elements
+const wrObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('wr-on');wrObs.unobserve(e.target);}});
+},{threshold:.3});
+document.querySelectorAll('.wr').forEach(el=>wrObs.observe(el));
+
+/* ── Calendar ── */
+const EVTS={
+  nikah:{title:'Rashid & Alia — Nikah Ceremony',sub:'Nikah · New Masjid, Lalpet',loc:'New Masjid, Lalpet',start:'20260806T060000Z',end:'20260806T080000Z',desc:'Nikah Ceremony at New Masjid, Lalpet. Followed by Walima Lunch at Noor Mahal, Lalpet.'},
+  walima:{title:'Rashid & Alia — Walima Lunch',sub:'Walima · Noor Mahal, Lalpet',loc:'Noor Mahal, Lalpet',start:'20260806T073000Z',end:'20260806T103000Z',desc:'Walima Lunch at Noor Mahal, Lalpet.'}
+};
+let activeEvt=null;
+
+function openCal(key){
+  activeEvt=EVTS[key];const e=activeEvt;
+  document.getElementById('cal-sub').textContent=e.sub;
+  document.getElementById('cal-google').href='https://calendar.google.com/calendar/render?action=TEMPLATE'
+    +`&text=${encodeURIComponent(e.title)}&dates=${e.start}/${e.end}`
+    +`&details=${encodeURIComponent(e.desc)}&location=${encodeURIComponent(e.loc)}`;
+  document.getElementById('calModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCal(){document.getElementById('calModal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('calModal').addEventListener('click',function(e){if(e.target===this)closeCal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCal();});
+
+function dlICS(){
+  if(!activeEvt)return;const e=activeEvt;
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Rashid & Alia//EN','BEGIN:VEVENT',
+    `DTSTART:${e.start}`,`DTEND:${e.end}`,`SUMMARY:${e.title}`,`LOCATION:${e.loc}`,`DESCRIPTION:${e.desc}`,
+    'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
+  a.download='rashid-alia.ics';a.click();URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
